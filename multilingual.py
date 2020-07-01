@@ -266,9 +266,9 @@ pt_dev_data, pt_dev_labels = utils.shuffle(pt_dev_data, pt_dev_labels)
 pt_test_data, pt_test_labels = utils.shuffle(pt_test_data, pt_test_labels)
 
 # x_train = en_train_data
-x_train = np.concatenate((en_train_data, es_train_data, hu_train_data))
+x_train = np.concatenate((en_train_data, es_train_data, hu_train_data, sk_train_data, sv_train_data, it_train_data, pt_train_data))
 # y_train = en_train_labels
-y_train = np.concatenate((en_train_labels, es_train_labels, hu_train_labels))
+y_train = np.concatenate((en_train_labels, es_train_labels, hu_train_labels, sk_train_labels, sv_train_labels, it_train_labels, pt_train_labels))
 
 x_test_en = en_test_data
 y_test_en = en_test_labels
