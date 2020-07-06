@@ -270,6 +270,9 @@ x_train = np.concatenate((en_train_data, es_train_data, hu_train_data, sk_train_
 # y_train = en_train_labels
 y_train = np.concatenate((en_train_labels, es_train_labels, hu_train_labels, sk_train_labels, sv_train_labels, it_train_labels, pt_train_labels, de_train_labels))
 
+x_dev = np.concatenate((en_dev_data, es_dev_data, hu_dev_data, sk_dev_data, sv_dev_data, it_dev_data, pt_dev_data, de_dev_data))
+y_dev = np.concatenate((en_dev_labels, es_dev_labels, hu_dev_labels, sk_dev_labels, sv_dev_labels, it_dev_labels, pt_dev_labels, de_dev_labels))
+
 x_test_en = en_test_data
 y_test_en = en_test_labels
 x_test_de = de_test_data
@@ -355,7 +358,7 @@ for i in range(num_iterations):
     print(K.eval(model.optimizer.lr))
     es = EarlyStopping(monitor='val_loss', mode='auto', min_delta=0, patience=5, restore_best_weights=True, verbose=1)
     mc = ModelCheckpoint('best_model.h5', monitor='val_loss', mode='auto', verbose=1, save_best_only=True)
-    model.fit(x_train, y_train, validation_data=(en_dev_data, en_dev_labels), batch_size=64, epochs=1000, shuffle=True, callbacks=[es, mc])
+    model.fit(x_train, y_train, validation_data=(x_dev, y_dev), batch_size=64, epochs=1000, shuffle=True, callbacks=[es, mc])
     # print('trained embedding shape:', model.layers[0].get_weights()[0].shape)
 
     gold_list = []
